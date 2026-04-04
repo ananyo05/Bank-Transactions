@@ -4,6 +4,18 @@ const cookieParser=require('cookie-parser')
 const app=express()
 
 app.use(express.json())
-app.use(cookie-parser)
+app.use(cookie-parser())
+
+/**
+ * - Routes required
+ */
+
+const authRouter=require('./routes/auth.routes')
+
+app.get("/",(req,res)=>{
+    res.send("Ledger Service is up and running")
+})
+
+app.use("/api/auth",authRouter)
 
 module.exports=app
